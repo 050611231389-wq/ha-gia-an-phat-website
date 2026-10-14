@@ -28,6 +28,9 @@ footer{background:#051a30;color:#d8e4ef;padding:50px 0 18px} .footer-grid{displa
 @media(max-width:700px){.top{display:none}.nav{height:64px}.hero .container{grid-template-columns:1fr;min-height:640px}.hero{min-height:640px}.hero h1{font-size:35px}.hero-art{display:none}.section{padding:52px 0}h2{font-size:27px}.about{grid-template-columns:1fr}.catgrid{grid-template-columns:repeat(2,1fr)}.reason-grid{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr}.catalog{grid-template-columns:repeat(2,1fr)}.posts{grid-template-columns:1fr}.contact{grid-template-columns:1fr}.b2b{display:block}.b2b .btn{margin-top:16px}.footer-grid{grid-template-columns:1fr}.modalbody{grid-template-columns:1fr}}
 @media(max-width:430px){.products{grid-template-columns:1fr}.hero h1{font-size:31px}}
  .oe-preview{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;font-size:12px;color:#53657a;margin:5px 0}.oe-full{overflow-wrap:anywhere;word-break:break-word;white-space:normal;max-height:170px;overflow:auto;background:#f5f8fb;border-radius:9px;padding:10px}.specrow{overflow-wrap:anywhere}.product-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.product-actions button{flex:1;min-width:90px;padding:9px;border-radius:9px;border:1px solid #d8e0e8;background:white;color:#061b31;cursor:pointer;font-size:12px;font-weight:700}.product-actions .order{background:#0068ff;color:white;border-color:#0068ff}.modal-order{margin-top:16px}.form-note{font-size:12px;color:#66758a} </style>
+<style>
+.smart-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin:12px 0 8px}.smart-controls label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;color:#334155;flex:1;min-width:160px}.smart-controls select,.smart-controls input{border:1px solid #d4dce8;border-radius:9px;padding:12px 11px;background:white;color:#17283d;min-width:0;width:100%;font:inherit;font-weight:400}.smart-clear{border:1px solid #cbd5e1;background:#fff;border-radius:9px;padding:12px 16px;cursor:pointer;color:#273449}.smart-hint{font-size:13px;color:#5b6b80;margin:10px 0 20px;line-height:1.6}.smart-hint strong{color:#a9202b}.smart-clear:hover{border-color:#c32835}
+</style>
 </head>
 <body>
 <div class="top"><div class="container"><span>Giải pháp phụ tùng ô tô cho Gara & Đối tác</span><span>Hotline: 0972 667 378</span></div></div>
@@ -61,8 +64,10 @@ footer{background:#051a30;color:#d8e4ef;padding:50px 0 18px} .footer-grid{displa
 <div class="reason"><div class="icon">☎</div><b>Hỗ trợ tư vấn</b><p>Hotline trực tiếp để xác nhận mã và nhu cầu.</p></div>
 </div></div></section>
 
-<section class="section" id="products"><div class="container"><div class="head"><div><div class="kicker">Tra cứu sản phẩm</div><h2>Danh mục mã sản phẩm KZMALL</h2><p class="lead">Tìm theo mã OE, mã sản phẩm, mã vật liệu, tên nhóm hoặc dòng xe. Tra cứu toàn bộ danh mục theo mã sản phẩm, mã OE hoặc mã vật liệu (khi đã có dữ liệu).</p></div><span class="count" id="resultCount"></span></div>
-<div class="toolbar"><input id="q" class="search" placeholder="Nhập mã OE, mã sản phẩm, mã vật liệu hoặc dòng xe..."><select id="category" class="select"><option value="">Tất cả danh mục</option></select></div>
+<section class="section" id="products"><div class="container"><div class="head"><div><div class="kicker">Tra cứu sản phẩm</div><h2>Danh mục mã sản phẩm KZMALL</h2><p class="lead">Tìm theo mã sản phẩm, mã vật liệu, mã OE, hãng xe, dòng xe và đời xe khi dữ liệu có ghi nhận. Nhập nhiều từ khóa, ví dụ: Lexus RX350 lọc dầu. Kết quả theo xe cần được xác nhận lại bằng OE hoặc thông tin động cơ.</p></div><span class="count" id="resultCount"></span></div>
+<div class="toolbar"><input id="q" class="search" aria-label="Tìm phụ tùng KZMALL" placeholder="Ví dụ: JO01612, Lexus RX350, lọc dầu Accent 2018..." autocomplete="off"><select id="category" class="select" aria-label="Lọc danh mục"><option value="">Tất cả danh mục</option></select></div>
+<div class="smart-controls"><label>Hãng xe <select id="vehicleBrand"><option value="">Tất cả hãng xe</option></select></label><label>Dòng xe <input id="vehicleModel" placeholder="VD: RX350, Accent" autocomplete="off"></label><label>Đời xe <input id="vehicleYear" type="number" min="1950" max="2100" placeholder="VD: 2018"></label><button type="button" id="clearSmart" class="smart-clear">Xóa bộ lọc</button></div>
+<div id="smartHint" class="smart-hint" aria-live="polite">Nhập mã sản phẩm, mã vật liệu, OE hoặc hãng/dòng xe. Kết quả theo xe là thông tin tham khảo, cần đối chiếu OE trước khi lắp.</div>
 <div class="products" id="productGrid"></div>
 <div class="b2b" id="partners"><div><h2>Bạn đang tìm nguồn phụ tùng cho gara hoặc cửa hàng?</h2><p>Liên hệ Hà Gia An Phát để được hỗ trợ tra mã và lựa chọn sản phẩm phù hợp.</p></div><a class="btn btn-red" href="tel:0972667378">Gọi 0972 667 378 →</a></div>
 </div></section>
@@ -95,9 +100,45 @@ const products=[{"category":"Lọc dầu","code":"JO02012","material":"","name":
 const categoryImages={
 "Lọc dầu":"assets/products_v3/oil_filter.jpg","Lọc điều hòa":"assets/products_v3/cabin_filter.jpg","Lọc gió động cơ":"assets/products_v3/engine_air_filter.jpg","Bugi":"assets/products_v3/spark_plug.jpg","Má phanh":"assets/products_v3/brake.jpg","Gạt mưa":"assets/products_v3/wiper.jpg","Máy phát điện":"assets/products_v3/alternator.jpg","Ắc quy":"assets/products_v3/battery.jpg","Mobin":"assets/products_v3/ignition_coil.jpg","Máy khởi động":"assets/products_v3/starter.jpg","Lọc nhiên liệu":"assets/products_v3/fuel_filter.jpg"
 };
-const normalizeSearch=s=>String(s||"").normalize("NFKC").toUpperCase().replace(/[^A-Z0-9]/g,"");
+const fold=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/gi,"d").normalize("NFKC").toUpperCase();
+const normalizeSearch=s=>fold(s).replace(/[^A-Z0-9]/g,"");
 const oeTokens=p=>String(p.oe||"").split(/[,;\n]+/).map(normalizeSearch).filter(Boolean);
-const matchesProduct=(p,q)=>{if(!q)return true;const n=normalizeSearch(q);if(!n)return true;return [p.code,p.material,p.name,p.category,p.fitment,p.ref].some(v=>normalizeSearch(v).includes(n))||oeTokens(p).some(v=>v.includes(n));};
+const searchWords=s=>fold(s).replace(/[^A-Z0-9]+/g," ").trim().split(/\s+/).filter(Boolean);
+const vehicleLines=p=>String(p.fitment||"").split(/\n|;/).map(v=>v.trim()).filter(Boolean);
+const vehicleBrands=["TOYOTA","LEXUS","HYUNDAI","KIA","HONDA","FORD","MAZDA","MITSUBISHI","NISSAN","SUZUKI","ISUZU","CHEVROLET","BMW","MERCEDES","AUDI","VOLKSWAGEN","SUBARU","PEUGEOT","VOLVO","LAND ROVER","PORSCHE","ACURA","INFINITI","DAEWOO","FIAT","JEEP","DODGE","CHRYSLER","RENAULT","SKODA","MG","BYD","VINFAST"];
+const vehicleText=p=>fold(p.fitment||"");
+const lineMatchesVehicle=(line,brand,model,year)=>{
+ const f=fold(line);
+ if(brand&&!new RegExp("(?:^|[^A-Z])"+brand+"(?:[^A-Z]|$)").test(f))return false;
+ if(model&&!normalizeSearch(line).includes(normalizeSearch(model)))return false;
+ if(year){const y=Number(year);if(!Number.isInteger(y)||y<1950||y>2100)return false;
+   const ranges=[...f.matchAll(/(19\d{2}|20\d{2})\s*[-–]\s*(19\d{2}|20\d{2})?/g)];
+   if(!ranges.length)return false;
+   if(!ranges.some(m=>y>=Number(m[1])&&y<=(m[2]?Number(m[2]):2100)))return false;
+ }
+ return true;
+};
+const scoreProduct=(p,q,brand,model,year)=>{
+ const lines=vehicleLines(p);
+ if((brand||model||year)&&!lines.some(l=>lineMatchesVehicle(l,brand,model,year)))return -1;
+ if(!q.trim())return 1;
+ const query=normalizeSearch(q),words=searchWords(q),oe=oeTokens(p);
+ const fields=[p.code,p.material,p.name,p.category,p.ref,p.fitment].map(fold);
+ const compactFields=fields.map(normalizeSearch);
+ const code=normalizeSearch(p.code),material=normalizeSearch(p.material);
+ if(query&&(query===code||query===material||oe.includes(query)))return 1000;
+ if(query&&(code.includes(query)||material.includes(query)||oe.some(x=>x.includes(query))))return 700;
+ if(query&&compactFields.some(v=>v.includes(query)))return 500;
+ const wordScore=words.map(w=>{
+   const n=normalizeSearch(w);
+   if(!n)return 0;
+   if(code.includes(n)||material.includes(n)||oe.some(x=>x.includes(n)))return 80;
+   if(compactFields.some(v=>v.includes(n)))return 20;
+   return 0;
+ });
+ return wordScore.length&&wordScore.every(Boolean)?100+wordScore.reduce((a,b)=>a+b,0):-1;
+};
+const matchesProduct=(p,q)=>scoreProduct(p,q,"","","")>=0;
 const cats=[...new Set(products.map(p=>p.category))];
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 const compact=s=>String(s||"").replace(/\/\/|\*+/g," ").replace(/\s+/g," ").trim();
@@ -105,7 +146,14 @@ document.getElementById("catGrid").innerHTML=cats.map(c=>`<div class="cat" oncli
 document.getElementById("category").innerHTML += cats.map(c=>`<option>${esc(c)}</option>`).join("");
 function render(){
  const q=document.getElementById("q").value.trim(), cat=document.getElementById("category").value;
- const list=products.filter(p=>(!cat||p.category===cat)&&matchesProduct(p,q));
+ const brand=document.getElementById("vehicleBrand").value;
+ const model=document.getElementById("vehicleModel").value.trim();
+ const year=document.getElementById("vehicleYear").value.trim();
+ const list=products.map((p,i)=>({p,i,score:scoreProduct(p,q,brand,model,year)})).filter(x=>(!cat||x.p.category===cat)&&x.score>=0).sort((a,b)=>b.score-a.score).map(x=>x.p);
+ const hint=document.getElementById("smartHint");
+ if(!list.length){hint.innerHTML="Không tìm thấy kết quả khớp. Hãy thử bớt từ khóa, bỏ bộ lọc đời xe hoặc tra bằng mã OE. Không tự suy đoán xe tương thích.";}
+ else if(q||brand||model||year){hint.innerHTML=`Tìm thấy <strong>${list.length}</strong> mã phù hợp với dữ liệu hiện có. Kết quả theo xe chỉ mang tính tham khảo; hãy đối chiếu OE/động cơ trước khi đặt hàng.`;}
+ else {hint.textContent="Tìm theo mã sản phẩm, mã vật liệu, OE hoặc thông tin xe. Lọc theo đời xe chỉ áp dụng khi dữ liệu ghi nhận khoảng năm rõ ràng.";}
  document.getElementById("resultCount").textContent=`Hiển thị ${list.length} / ${products.length} mã`;
  document.getElementById("productGrid").innerHTML=list.length?list.map((p,i)=>`<article class="product"><img src="${categoryImages[p.category]||p.image}" alt="${esc(p.category)}"><div class="pbody"><span class="tag">${esc(p.category)}</span><h3>${esc(p.code)}</h3><div class="code">Mã vật liệu: ${esc(p.material||"Chưa cập nhật")}</div><div class="oe-preview" title="${esc(p.oe||"Chưa có mã OE")}">OE: ${esc(p.oe||"Chưa có mã OE – tra bằng mã SP / mã vật liệu")}</div><div class="fit">${esc(compact(p.fitment)||compact(p.oe)||"Liên hệ để tra cứu ứng dụng")}</div><div class="pfoot"><span class="price">${p.price?Number(p.price).toLocaleString("vi-VN")+" đ":"Liên hệ báo giá"}</span><button class="more" style="border:0;background:none" onclick="openModal(${products.indexOf(p)})">Chi tiết →</button></div><div class="product-actions"><button onclick="contactZalo(${products.indexOf(p)},'Đặt hàng')" class="order">Đặt hàng Zalo</button><button onclick="contactZalo(${products.indexOf(p)},'Tư vấn')">Tư vấn Zalo</button></div></div></article>`).join(""):`<div class="empty">Không tìm thấy sản phẩm phù hợp. Hãy thử mã OE, mã sản phẩm, mã vật liệu hoặc tên dòng xe khác.</div>`;
 }
@@ -118,6 +166,10 @@ function openZaloWithText(message){
 function contactZalo(i,action){const p=products[i];openZaloWithText(`${action} sản phẩm KZMALL\nMã sản phẩm: ${p.code}\nNhóm: ${p.category}\nMã vật liệu: ${p.material||"Chưa cập nhật"}\nMã OE: ${p.oe||"Chưa có"}\nVui lòng hỗ trợ xác nhận hàng và báo giá.`)}
 function closeModal(){document.getElementById("modal").classList.remove("open")}
 
+const brandOptions=vehicleBrands.filter(b=>products.some(p=>new RegExp("(?:^|[^A-Z])"+b+"(?:[^A-Z]|$)").test(vehicleText(p))));
+document.getElementById("vehicleBrand").innerHTML += brandOptions.map(b=>`<option value="${b}">${b}</option>`).join("");
+["vehicleBrand","vehicleModel","vehicleYear"].forEach(id=>document.getElementById(id).addEventListener(id==="vehicleBrand"?"change":"input",render));
+document.getElementById("clearSmart").addEventListener("click",()=>{document.getElementById("q").value="";document.getElementById("category").value="";document.getElementById("vehicleBrand").value="";document.getElementById("vehicleModel").value="";document.getElementById("vehicleYear").value="";render();document.getElementById("q").focus()});
 const leadForm=document.getElementById("leadForm");
 leadForm?.addEventListener("submit",async(e)=>{
  e.preventDefault(); const btn=document.getElementById("submitLead"),status=document.getElementById("formStatus");
